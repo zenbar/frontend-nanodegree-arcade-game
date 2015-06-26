@@ -15,3 +15,4 @@ How this game work:
    the speed increase again
    
 To play the game, visit: http://kendrickt.com/frogger
+Use Up, Down, Left, Right keys to move the player. Avoid the enemies, get to the top row and win! Enjoy!
