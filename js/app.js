@@ -1,15 +1,22 @@
-// control how fast the enemy moves
-var speed = 120;
-
 // Enemies our player must avoid
 var Enemy = function() {
 
     // Variables applied to each of our instances go here,
     this.x = 0;
     this.y = 0;
+    this.speed = 120;
 
     // The image/sprite for our enemies
     this.sprite = 'images/enemy-bug.png';
+};
+
+// change the speed of enemy to make the game more interesting
+Enemy.prototype.changeSpeed = function() {
+    if ( player.score >5 && player.score <10)
+        this.speed = 170;
+    if (player.score >= 10) {
+        this.speed = 200;
+    }
 };
 
 // Update the enemy's position
@@ -26,7 +33,7 @@ Enemy.prototype.update = function(dt) {
         // change the speed when player score more than 5 pts or 10 pts
         // make the game a bit more challenging as the game progress
         this.changeSpeed();
-        this.x += dt * speed;
+        this.x += dt * this.speed;
         // after crossing the line, reset and randomly pick a new row to start
         if (this.x > 101*4){
             this.x =0;
@@ -67,7 +74,7 @@ Player.prototype.checkCollision = function(){
     }
 };
 
-Play.prototype.checkWinning = function() {
+Player.prototype.checkWinning = function() {
     // if the player get to the top row, he win and move him back to starting point
     if (player.y == 0) {
         player.score += 1;
@@ -78,18 +85,9 @@ Play.prototype.checkWinning = function() {
 };
 
 // update score in the HTML
-Play.prototype.updateScore = function() {
+Player.prototype.updateScore = function() {
     var score = "Score: " + player.score.toString();
     document.getElementById("score").innerHTML = score;   
-};
-
-// change the speed of enemy to make the game more interesting
-Play.prototype.changeSpeed = function() {
-    if ( player.score >5 && plaayer.score <10)
-        speed = 170;
-    if (player.score >= 10) {
-        speed = 200;
-    }
 };
 
 Player.prototype.render = function() {
